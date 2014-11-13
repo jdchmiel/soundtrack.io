@@ -1,4 +1,4 @@
-if (typeof(play._track._artist) != 'undefined' && play._track._artist)
+if (play._track && typeof(play._track._artist) != 'undefined' && play._track._artist)
   li
     a(href="/#{play._track._artist.slug}") #{play._track._artist.name}
     |  &mdash; 
