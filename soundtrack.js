@@ -77,7 +77,7 @@ passport.deserializeUser(function(userID, done) {
   });
 });
 app.use(function(req, res, next) {
-  res.setHeader("X-Powered-By", 'beer.');
+  res.setHeader("X-Powered-By", 'BEER');
   res.locals.user = req.user;
   res.charset = 'utf-8';
 
@@ -168,8 +168,7 @@ if (config.lastfm && config.lastfm.key && config.lastfm.secret) {
   app.LastFM = LastFM;
   app.lastfm = lastfm;
   app.get('/auth/lastfm', function(req, res) {
-    //var authUrl = lastfm.getAuthenticationUrl({ cb: ((config.app.safe) ? 'http://' : 'http://') + config.app.host + '/auth/lastfm/callback' });
-    var authUrl = lastfm.getAuthenticationUrl({ cb: ((config.app.safe) ? 'http://' : 'http://') + 'soundtrack.io/auth/lastfm/callback' });
+    var authUrl = lastfm.getAuthenticationUrl({ cb: ((config.app.safe) ? 'http://' : 'http://') + config.app.host + '/auth/lastfm/callback' });
     res.redirect(authUrl);
   });
   app.get('/auth/lastfm/callback', function(req, res) {
@@ -478,6 +477,11 @@ app.del('/playlist/:trackID', requireLogin, authorize('admin'), function(req, re
   });
 
 });
+
+app.del('/tracks/:trackID', authorize('admin') , soundtracker , tracks.delete);
+
+
+
 
 app.post('/playlist/:trackID', requireLogin, function(req, res, next) {
 

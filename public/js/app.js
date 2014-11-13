@@ -108,6 +108,13 @@ Soundtrack.prototype.editTrackID = function( trackID ) {
   });
 }
 
+Soundtrack.prototype.deleteTrackID = function( trackID ) {
+	var killIt = confirm("Are you sure you wish to DELETE this forever and ever?");
+	if (killIt ==true) {
+		$.ajax('/tracks/' + encodeURIComponent(trackID), { type: 'DELETE', data: { index: 1 } });
+	}
+}
+
 function volumeChangeHandler(e) {
   var vol = Number( e.value );
 
@@ -1072,6 +1079,13 @@ $(window).load(function() {
     e.preventDefault();
     var self = this;
     soundtrack.editTrackID($(self).data('track-id'));
+    return false;
+  });
+
+  $(document).on('click', '*[data-action=delete-track]', function(e) {
+    e.preventDefault();
+    var self = this;
+    soundtrack.deleteTrackID($(self).data('track-id'));
     return false;
   });
 

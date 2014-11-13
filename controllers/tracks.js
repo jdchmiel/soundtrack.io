@@ -49,6 +49,15 @@ module.exports = {
       });
     /*/});/**/
   },
+  delete: function(req, res, next) {
+	Track.remove({ _id: req.param('trackID')}).exec(function(err,track) {
+		if(err) {
+			console.log("error deleting track" + err);
+		} else {
+			console.log("deleted" +  req.param('trackID'));
+		}
+	});
+  },
   pool: function(req, res, next) {
     var query = { _curator: { $exists: true } };
 
