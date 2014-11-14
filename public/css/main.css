@@ -421,3 +421,19 @@ img.emoji {
 	height: 1.5em;
 	width: 1.5em
 }
+
+ul#userlist a.adminUser {
+	color: #ffff00;
+}
+ul#userlist a.moderatorUser {
+	color: #cc0096;
+}
+ul#userlist a.editorUser {
+	color: #12bd00;
+}
+ul#userlist a.standardUser {
+	color: auto;
+}
+ul#userlist a.blingUser {
+	color: #b7b7b7;
+}

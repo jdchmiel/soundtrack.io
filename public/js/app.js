@@ -157,12 +157,30 @@ function updateUserlist() {
   $.get('/listeners.json', function(data) {
     $('#userlist').html('');
     $('.user-count').html('<strong>' + data.length + '</strong> online');
+    var userNameClass = 'standardUser';
     data.forEach(function(user) {
+      userNameClass = 'standardUser';
+      if (user.roles.indexOf('editor') >= 0) {
+        userNameClass = 'editorUser';
+        user.role = 'Editor';
+      }
+      if (user.roles.indexOf('moderator') >= 0) {
+        userNameClass = 'moderatorUser';
+        user.role = 'Moderator';
+      }
+      if (user.roles.indexOf('admin') >= 0) {
+        userNameClass = 'adminUser';
+        user.role = 'Admin';
+      }
+      if (user._id == '545bd362348e201d09000014') {
+        userNameClass = 'blingUser';
+        user.role = 'Questionable';
+      }
       // TODO: use template (Blade?)
       if (user.role != 'listener') {
-        $('<li data-user-id="' + user._id + '"><a href="/' + user.slug + '"><img src="' + user.avatar.url + '" class="user-avatar-small pull-left" />' + user.username + ' <span class="badge pull-right" title="editors can fix track titles and artist names.  ping @martindale if you want to help.">' + user.role + '</span></a></li>').appendTo('#userlist');
+        $('<li data-user-id="' + user._id + '"><a class="'+ userNameClass +'" href="/' + user.slug + '"><img src="' + user.avatar.url + '" class="user-avatar-small pull-left" />' + user.username + ' <span class="badge pull-right" title="editors can fix track titles and artist names.  ping @martindale if you want to help.">' + user.role + '</span></a></li>').appendTo('#userlist');
       } else {
-        $('<li data-user-id="' + user._id + '"><a href="/' + user.slug + '"><img src="' + user.avatar.url + '" class="user-avatar-small pull-left" />' + user.username + '</a></li>').appendTo('#userlist');
+        $('<li data-user-id="' + user._id + '"><a class="'+ userNameClass +'" href="/' + user.slug + '"><img src="' + user.avatar.url + '" class="user-avatar-small pull-left" />' + user.username + '</a></li>').appendTo('#userlist');
       }
 
     });
