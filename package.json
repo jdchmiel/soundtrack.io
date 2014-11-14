@@ -13,6 +13,7 @@
     "async": "~0.2.9",
     "connect-cachify": "0.0.15",
     "connect-redis": "~1.4.5",
+    "emojify.js": "0.9.5", 
     "express": "~3.3.3",
     "flashify": "~0.1.2",
     "jade": "~0.32.0",

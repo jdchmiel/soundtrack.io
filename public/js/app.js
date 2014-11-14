@@ -524,7 +524,7 @@ $(window).load(function() {
           break;
           case 'chat':
             $( msg.data.formatted ).appendTo('#messages');
-
+			emojify.run();
             setTimeout(function() {
               $("#messages").scrollTop($("#messages")[0].scrollHeight);
             }, 100);
@@ -1345,4 +1345,8 @@ $(window).load(function() {
     $('base').attr('target', '_blank');
   }
 
+});
+
+$(function() {
+	emojify.run();
 });
