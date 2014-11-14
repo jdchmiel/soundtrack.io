@@ -416,3 +416,8 @@ visibility: visible !important;
 opacity: 1 !important;
 transition-duration: 0s!important;
 }
+
+img.emoji {
+	height: 1.5em;
+	width: 1.5em
+}
