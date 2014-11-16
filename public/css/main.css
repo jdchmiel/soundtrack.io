@@ -219,6 +219,10 @@ footer {
 #messages {
   padding-bottom: 0.2em;
 }
+#messages .message .message-content .inlineChatImage {
+  max-height: 200px;
+  max-width: 200px;
+}
 #playlist {
   height: 338px;
   clear: both;
@@ -426,7 +430,7 @@ ul#userlist a.adminUser {
 	color: #ffff00;
 }
 ul#userlist a.moderatorUser {
-	color: #cc0096;
+	color: #cc0040;
 }
 ul#userlist a.editorUser {
 	color: #12bd00;

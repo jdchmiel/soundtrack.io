@@ -492,11 +492,20 @@ app.post('/playlist/:trackID', requireLogin, function(req, res, next) {
 
   if (!index) { return next(); }
   if (!app.room.playlist[ index].votes) { app.room.playlist[ index].votes = {}; }
+  if (!app.room.playlist[ index].score) { app.room.playlist[ index].score = {}; }
 
   app.room.playlist[ index].votes[ req.user._id ] = (req.param('v') == 'up') ? 1 : -1;
-  app.room.playlist[ index].score = _.reduce( app.room.playlist[ index].votes , function(score, vote) {
-    return score + vote;
-  }, 0);
+  try {
+    app.room.playlist[ index].score = _.reduce( app.room.playlist[ index].votes , function(score, vote) {
+      return score + vote;
+    }, 0);
+  
+  } catch(err) {
+    console.log("CAUGHT ERROR, site dead now or not?  What to do with error?");
+    console.log(err);
+    console.log("score: " + score);
+    app.room.playlist[ index].score = 0;
+  }
 
   console.log('track score: ' + app.room.playlist[ index].score);
   console.log('track votes: ' + JSON.stringify(app.room.playlist[ index].votes));

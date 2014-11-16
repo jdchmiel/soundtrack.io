@@ -22,7 +22,7 @@ block content
 
           .row-fluid
             .span2
-              a.btn.btn-mini(href="#", data-action="toggle-volume", data-intro="<h5>Welcome to soundtrack.io!</h5>  Since you're new and we're polite, we've muted the sound.  You can turn it on here.", data-step="1", data-position="right")
+              a.btn.btn-mini(href="#", data-action="toggle-volume", data-intro="<h5>Welcome to [site name]!</h5>  Since you're new and we're polite, we've muted the sound.  You can turn it on here.", data-step="1", data-position="right")
                 i.icon-white.icon-volume-up
             .span9
               input.slider(type="text", name="volume", data-for="volume", value="80", data-slider-min="0", data-slider-max="100", data-slider-value="80")
@@ -46,7 +46,7 @@ block content
 
           //-h3#playlist-summary(ng-bind="'Playlist (' + tracks.length + ')'")
           #playlist
-            ul#playlist-list.nav.nav-list(data-intro="If the playlist ever reaches zero, soundtrack.io will automatically choose song based on what's been played in the past.", data-step="3", data-position="right")
+            ul#playlist-list.nav.nav-list(data-intro="If the playlist ever reaches zero, The Machine will automatically choose song based on what's been played in the past.", data-step="3", data-position="right")
               li(ng-repeat="track in tracks", ng-class="{active: $first}", ng-style="{top: ((track.order * 40) + 'px')}", ng-model="track", data-track-id="{{track._id}}")
                 .playlist-controls
                   .score.badge {{track.score}}

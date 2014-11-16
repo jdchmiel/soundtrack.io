@@ -185,6 +185,8 @@ function updateUserlist() {
 
     });
   });
+  emojify.setConfig({ignored_tags :{'SCRIPT': 1,'PRE': 1,'CODE': 1}});
+  emojify.run();
 }
 var videoToggled = false; //TODO: Should this use Cookie?
 
@@ -542,7 +544,6 @@ $(window).load(function() {
           break;
           case 'chat':
             $( msg.data.formatted ).appendTo('#messages');
-			emojify.run();
             setTimeout(function() {
               $("#messages").scrollTop($("#messages")[0].scrollHeight);
             }, 100);
@@ -552,6 +553,10 @@ $(window).load(function() {
             if (msg.data.message.toLowerCase().indexOf('@' + soundtrack.user.username.toLowerCase()) >= 0) {
               soundtrack.notify('https://soundtrack.io/favicon.ico', 'New Mention in Chat', msg.data.message);
             }
+            emojify.setConfig({ignored_tags :{'SCRIPT': 1,'PRE': 1,'CODE': 1}});
+            emojify.run($('#messages').get(0));
+			//last row only, other rows already converted.
+            imageTagger.run($('#messages .message .message-content').last());
           break;
           case 'ping':
             soundtrack.sockjs.send(JSON.stringify({
@@ -592,6 +597,8 @@ $(window).load(function() {
 
   updatePlaylist();
   updateUserlist();
+            emojify.setConfig({ignored_tags :{'SCRIPT': 1,'PRE': 1,'CODE': 1}});
+            emojify.run();
 
   // breaks javascript if page doesn't have #messages
   //$("#messages").scrollTop($("#messages")[0].scrollHeight);
@@ -1366,5 +1373,6 @@ $(window).load(function() {
 });
 
 $(function() {
+	emojify.setConfig({ignored_tags :{'SCRIPT': 1,'PRE': 1,'CODE': 1}});
 	emojify.run();
 });
