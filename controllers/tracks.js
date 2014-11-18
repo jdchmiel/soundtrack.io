@@ -5,6 +5,7 @@ var async = require('async')
 module.exports = {
   list: function(req, res, next) {
     var limit = (req.param('limit')) ? parseInt(req.param('limit')) : 100;
+    var skip = (req.param('skip')) ? parseInt(req.param('skip')) : 0;
     var query = (req.param('q')) ? { name: new RegExp('(.*)'+req.param('q')+'(.*)', 'i') } : {};
 
     if (req.param('nsfw') === '✓') {
@@ -26,7 +27,7 @@ module.exports = {
       if (err) { console.log(err); }/**/
 
       //Track.find({ _id: { $in: tracks.map(function(x) { return x._id; }) }}).populate('_artist').exec(function(err, tracks) {
-      Track.find( query ).populate('_artist').limit( limit ).exec(function(err, tracks) {
+      Track.find( query ).populate('_artist').limit( limit ).skip(skip).exec(function(err, tracks) {
         if (err) { console.log(err); }
 
         Track.count( query ).exec(function(err, count) {
@@ -41,6 +42,7 @@ module.exports = {
                   tracks: tracks
                 , count: count
                 , limit: limit
+                , skip: skip
                 , query: query
               });
             }

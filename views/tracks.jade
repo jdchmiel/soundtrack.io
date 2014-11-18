@@ -5,7 +5,13 @@ block content
   .well.content-well
     h1 #{count} #{(count == 1) ? "Track" : "Tracks"} Known
     p Ordered by number of plays.  Display limited to #{limit} tracks.  Pass <code>limit</code> to change this.
-
+    h4
+      -if (isNaN(skip) || skip === null) {skip = 0;}
+      -var Next = skip + limit;
+      -var Back = Math.max(0, skip - limit);
+      -var Lim = parseInt(limit,10);
+      a(href='/tracks?limit=' + Lim + '&skip=' + Back) Prev #{limit}
+      a(href='/tracks?limit=' + Lim + '&skip=' + Next) Next #{limit}
     ul
       for track in tracks
         li

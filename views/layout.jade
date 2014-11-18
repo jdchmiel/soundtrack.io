@@ -76,10 +76,12 @@ html(lang="en-US", ng-app="soundtrack-io")
             ul.nav
               li.active
                 a(href="/", ng-class="{active: slug == ''}") Home
+              li.active
+                a(href="https://github.com/jdchmiel/soundtrack.io/issues", ng-class="{active: slug == ''}") Bugs
               li
                 a(href="/about", ng-class="{active: slug == 'about'}") About
               li
-                a(href="/history", ng-class="{active: slug == 'history'}") History
+                a(href="/history?limit=200", ng-class="{active: slug == 'history'}") History
               li
                 a(href="/artists", ng-class="{active: slug == 'artists'}") Artists
               li

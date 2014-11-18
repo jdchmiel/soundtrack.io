@@ -427,10 +427,10 @@ img.emoji {
 }
 
 ul#userlist a.adminUser {
-	color: #ffff00;
+	color: #ffff66;
 }
 ul#userlist a.moderatorUser {
-	color: #cc0040;
+	color: #00ccff;
 }
 ul#userlist a.editorUser {
 	color: #12bd00;

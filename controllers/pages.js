@@ -22,12 +22,16 @@ module.exports = {
     res.render('about', { });
   },
   history: function(req, res) {
-    Play.find({}).populate('_track _curator').sort('-timestamp').limit(100).exec(function(err, plays) {
+    var limit = (req.param('limit')) ? parseInt(req.param('limit')) : 100;
+    var skip = (req.param('skip')) ? parseInt(req.param('skip')) : 0;
+    Play.find({}).populate('_track _curator').sort('-timestamp').limit(limit).skip(skip).exec(function(err, plays) {
       Artist.populate(plays, {
         path: '_track._artist'
       }, function(err, plays) {
         res.render('history', {
           plays: plays
+          , limit: limit
+          , skip: skip
         });
       });
     });

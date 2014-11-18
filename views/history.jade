@@ -4,6 +4,13 @@ block content
 
   .well.content-well
     h1 Track History
+    h4
+      -if (isNaN(skip) || skip === null) {skip = 0; alert('not a num');}
+      -var Next = skip + limit;
+      -var Back = Math.max(0, skip - limit);
+      -var Lim = parseInt(limit,10);
+      a(href='/history?limit=' + Lim + '&skip=' + Back) Prev #{limit}
+      a(href='/history?limit=' + Lim + '&skip=' + Next) Next #{limit}
     ul
       for play in plays
         include partials/play
