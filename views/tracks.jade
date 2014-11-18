@@ -12,12 +12,14 @@ block content
       -var Lim = parseInt(limit,10);
       a(href='/tracks?limit=' + Lim + '&skip=' + Back) Prev #{limit}
       a(href='/tracks?limit=' + Lim + '&skip=' + Next) Next #{limit}
-    ul
-      for track in tracks
-        li
-          if (track._artist)
-            a(href="/#{track._artist.slug}") #{track._artist.name}
-            |  &mdash; 
-            a(href="/#{track._artist.slug}/#{track.slug}/#{track._id}") #{track.title}
-          else
-            h5 ಠ_ಠ #{track}
+
+    table.table
+      thead
+        tr
+          th Artist
+          th Title
+          th Length
+          th Plays
+          th Controls
+        for track in tracks
+          include partials/track-row

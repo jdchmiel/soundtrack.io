@@ -11,6 +11,12 @@ block content
       -var Lim = parseInt(limit,10);
       a(href='/history?limit=' + Lim + '&skip=' + Back) Prev #{limit}
       a(href='/history?limit=' + Lim + '&skip=' + Next) Next #{limit}
-    ul
+    table.table
+      thead
+        tr
+          th Artist
+          th Title
+          th Queued by 
+          th Controls
       for play in plays
         include partials/play

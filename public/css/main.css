@@ -219,10 +219,21 @@ footer {
 #messages {
   padding-bottom: 0.2em;
 }
-#messages .message .message-content .inlineChatImage {
+#messages .message .message-content div.inlineChatImage {
   max-height: 200px;
   max-width: 200px;
 }
+#messages .message .message-content div.inlineChatImage .bigX {
+	font-size: 1.9em;
+	display: inline-block;
+	float: right;
+	z-index: 10;
+	position: relative;
+	margin: 0 0 -1.5em 0;
+	background: rgba(0,0,0,0.5);
+	border-radius: .5em;
+}
+
 #playlist {
   height: 338px;
   clear: both;
@@ -441,3 +452,8 @@ ul#userlist a.standardUser {
 ul#userlist a.blingUser {
 	color: #b7b7b7;
 }
+
+table.table tr:nth-child(even) {
+	background-color: #282828;
+}
+
