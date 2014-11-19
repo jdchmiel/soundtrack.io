@@ -340,6 +340,10 @@ footer {
   display: none;
 }
 
+#playlist-list a1 {
+  color: #ffffff;
+}
+
 #track-progress {
   position: relative;
 }
