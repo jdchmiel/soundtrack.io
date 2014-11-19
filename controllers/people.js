@@ -44,8 +44,8 @@ module.exports = {
       person.email  = (req.param('email')) ? req.param('email') : person.email;
 
       if (typeof(person.email) == 'string') {
-        var hash = require('crypto').createHash('md5').update( person.email ).digest('hex');
-        person.avatar.url = 'https://www.gravatar.com/avatar/' + hash + '?d=https://soundtrack.io/img/user-avatar.png';
+        var hash = require('crypto').createHash('md5').update( person.email.toLowerCase() ).digest('hex');
+        person.avatar.url = 'https://www.gravatar.com/avatar/' + hash + '?d=http://downsidesup.com:8080/img/user-avatar.png';
       }
 
       person.save(function(err) {
