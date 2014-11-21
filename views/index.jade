@@ -49,29 +49,27 @@ block content
             ul#playlist-list.nav.nav-list(data-intro="If the playlist ever reaches zero, The Machine will automatically choose song based on what's been played in the past.", data-step="3", data-position="right")
               li(ng-repeat="track in tracks", ng-class="{active: $first}", ng-style="{top: ((track.order * 40) + 'px')}", ng-model="track", data-track-id="{{track._id}}")
                 .playlist-controls
-                  .score.badge {{track.score}}
                   i.icon-chevron-up.icon-white(data-action="upvote-track", data-track-id="{{track._id}}")
+                  .badge.score {{track.score}}
                   i.icon-chevron-down.icon-white(data-action="downvote-track", data-track-id="{{track._id}}")
                   if (user && user.roles.indexOf('editor') >= 0)
-                    .editor-controls
-                      a.btn.btn-mini(href="#", data-action="launch-track-editor", data-track-id="{{track._id}}")
-                        | edit
-                div(style="font-size: 0.75em;")
-                  span.pull-right {{track.duration | toHHMMSS }}
-                  a(href="{{track.curator.slug}}") {{track.curator.username}}
-                  |  wants to play 
-                  if (user &&user.roles.indexOf('admin') >= 0)
+                    a(href="#", data-action="launch-track-editor", data-track-id="{{track._id}}")
+                      i.icon-white.icon-edit
+                  if (user &&user.roles.indexOf('moderator') >= 0)
                     |  
                     a(href="#", data-action="remove-queued-track", data-track-id="{{track._id}}", data-track-index="{{$index}}")
                       i.icon-remove.icon-white
+                div(style="font-size: 0.75em;")
+                  span.pull-right {{track.duration | toHHMMSS }}
+                  | added by: 
+                  a(href="{{track.curator.slug}}") {{track.curator.username}} 
                 .track-details(style="font-size: 1.1em;")
                   a(href="/{{track._artist.slug}}/{{track.slug}}/{{track._id}}") {{track.title}}
                 .track-details.clearfix
-                  .text-right
-                    .label.label-warning(ng-if="track.flags.nsfw") nsfw
-                    .label(ng-if="track.flags.live") live
-                    |  by 
-                    a(href="/{{track._artist.slug}}") {{track._artist.name}}
+                  .label.label-warning(ng-if="track.flags.nsfw") nsfw
+                  .label(ng-if="track.flags.live") live
+                  |  by 
+                  a(href="/{{track._artist.slug}}") {{track._artist.name}}
 
           
           h5

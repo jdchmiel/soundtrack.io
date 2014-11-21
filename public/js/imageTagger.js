@@ -3,7 +3,10 @@
 
 var imageTagger = (function() { //set up scope wrapper for this plugin
 	$(document).on("click","div.inlineChatImage span.bigX", function(event) {
-		 $(this).parent().remove();
+		var $this = $(this);
+		var link = $this.next().attr('src');
+		var $target = $this.parent().parent();
+		$target.html(link);
 	});
 
 	var closerString = "<span class='bigX'>X</span>";

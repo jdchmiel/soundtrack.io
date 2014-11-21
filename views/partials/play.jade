@@ -18,13 +18,14 @@ if (play._track && typeof(play._track._artist) != 'undefined' && play._track._ar
           a.btn.btn-mini(href="#", data-action="launch-track-editor", data-track-id="#{play._track._id}") edit
         if (user && user.roles.indexOf('admin') >= 0)
           a.btn.btn-mini(href="#", data-action="delete-track", data-track-id="#{play._track._id}") delete
-        a.btn.btn-mini(href="#", data-toggle="dropdown") add to 
-          span.caret
-        ul.dropdown-menu.user-playlists-dropdown(data-for="user-playlists")
-          for playlist in user._playlists.sort(function(a, b) { return b.created - a.created; })
-            li(data-playlist-id="#{playlist._id}")
-              a(data-playlist-id="#{playlist._id}", data-username="#{user.slug}", data-track-id="#{play._track._id}", data-action="add-track-to-playlist") #{playlist.name}
-          li(data-action="new-playlist")
-            a(href="#create-playlist-modal", data-toggle="modal") Create New &raquo;
+        if (user)
+          a.btn.btn-mini(href="#", data-toggle="dropdown") add to 
+            span.caret
+          ul.dropdown-menu.user-playlists-dropdown(data-for="user-playlists")
+            for playlist in user._playlists.sort(function(a, b) { return b.created - a.created; })
+              li(data-playlist-id="#{playlist._id}")
+                a(data-playlist-id="#{playlist._id}", data-username="#{user.slug}", data-track-id="#{play._track._id}", data-action="add-track-to-playlist") #{playlist.name}
+            li(data-action="new-playlist")
+              a(href="#create-playlist-modal", data-toggle="modal") Create New &raquo;
 
       a.btn.btn-mini(href="#", data-action="queue-track", data-source="soundtrack", data-id="#{play._track._id}") &#9835; queue it &raquo;

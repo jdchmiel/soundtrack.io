@@ -174,7 +174,7 @@ function updateUserlist() {
       }
       if (user._id == '545bd362348e201d09000014') {
         userNameClass = 'blingUser';
-        user.role = 'Questionable';
+        user.role = '#ForeverGrey';
       }
       // TODO: use template (Blade?)
       if (user.role != 'listener') {
@@ -1337,6 +1337,7 @@ $(window).load(function() {
     }
   });
 
+/*
   $('*[data-action=toggle-target-blank]').on('click', function(e) {
     var self = this;
     if ($(self).prop('checked')) {
@@ -1347,6 +1348,10 @@ $(window).load(function() {
       $.cookie('openLinksInNewWindow', false, { expires: COOKIE_EXPIRES });
     }
   });
+*/
+  if (window.location.pathname == '/') {
+    $('base').attr('target', '_blank');
+  }
 
   if ($.cookie('scrobblingEnabled') === 'true') {
     $('*[data-action=toggle-scrobble]').prop('checked', true);
@@ -1364,12 +1369,12 @@ $(window).load(function() {
     $('*[data-action=toggle-link-warning]').prop('checked', true);
     $(document).on('click', '.message-content a', warnBeforeInterrupting);
   }
-
+/*
   if ($.cookie('openLinksInNewWindow') == 'true') {
     $('*[data-action=toggle-target-blank]').prop('checked', true);
     $('base').attr('target', '_blank');
   }
-
+*/
 });
 
 $(function() {

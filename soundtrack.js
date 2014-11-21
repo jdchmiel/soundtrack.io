@@ -460,8 +460,8 @@ app.post('/chat', requireLogin, function(req, res) {
     });
   });
 });
-
-app.del('/playlist/:trackID', requireLogin, authorize('admin'), function(req, res, next) {
+// allow a moderator to remove tracks from queue
+app.del('/playlist/:trackID', requireLogin, authorize('moderator'), function(req, res, next) {
   if (!req.param('index') || req.param('index') == 0) { return next(); }
 
   app.room.playlist.splice( req.param('index') , 1 );
@@ -477,7 +477,7 @@ app.del('/playlist/:trackID', requireLogin, authorize('admin'), function(req, re
   });
 
 });
-
+// allow only admins to permanantly remove a track
 app.del('/tracks/:trackID', authorize('admin') , soundtracker , tracks.delete);
 
 
