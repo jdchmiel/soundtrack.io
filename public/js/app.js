@@ -184,9 +184,9 @@ function updateUserlist() {
       }
 
     });
-  });
   emojify.setConfig({ignored_tags :{'SCRIPT': 1,'PRE': 1,'CODE': 1}});
   emojify.run();
+  });
 }
 var videoToggled = false; //TODO: Should this use Cookie?
 
